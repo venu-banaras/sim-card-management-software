@@ -1,7 +1,4 @@
-/**
- *
- * @author MayankSingh
- */
+
 import java.sql.*;
 import javax.swing.*;
 
@@ -129,6 +126,7 @@ public class logindetail extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -209,3 +207,4 @@ public class logindetail extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration                   
 }
+
