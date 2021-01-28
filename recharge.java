@@ -8,6 +8,7 @@ public class recharge extends javax.swing.JFrame {
      */
     Connection con;
     Statement stmt;
+    ResultSet rs;
     public recharge() {
         initComponents();
         Connect();
@@ -48,6 +49,7 @@ public class recharge extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jButton4 = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -57,7 +59,7 @@ public class recharge extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("CUSTOMER DETAILS");
+        setTitle("RECHARGE");
 
         jLabel1.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -70,7 +72,7 @@ public class recharge extends javax.swing.JFrame {
         jLabel3.setText("SIM TYPE");
 
         jComboBox1.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRE-PAID", "POST-PAID" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECT TYPE", "POST-PAID", "PRE-PAID" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -98,7 +100,7 @@ public class recharge extends javax.swing.JFrame {
 
         jList2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "₹49 ", "₹149", "₹249", "₹399", "₹599", "₹999" };
+            String[] strings = { "Pre-Paid plans", "₹49 ", "₹149", "₹249", "₹399", "₹599", "₹999", "Post-Paid plans", "₹399", "₹499", "₹649", "₹799", "₹999" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -123,6 +125,14 @@ public class recharge extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane3.setViewportView(jTextArea1);
 
+        jButton4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton4.setText("Check Availability");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,7 +140,7 @@ public class recharge extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,8 +159,11 @@ public class recharge extends javax.swing.JFrame {
                                     .addComponent(jComboBox1, 0, 167, Short.MAX_VALUE)
                                     .addComponent(jScrollPane2))))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,8 +173,9 @@ public class recharge extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(22, 22, 22)
+                    .addComponent(jLabel2)
+                    .addComponent(jButton4))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -185,6 +199,7 @@ public class recharge extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -197,7 +212,10 @@ public class recharge extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                          
 
-                                 
+    private void jList2KeyPressed(java.awt.event.KeyEvent evt) {                                  
+        // list
+        
+    }                                 
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // view plan button
@@ -215,17 +233,15 @@ public class recharge extends javax.swing.JFrame {
         if(index==6)
             jTextArea1.setText("₹999  Validity 84Days\n 2GB DATA/PER DAY \n 3G/4G Data. 2GB Data/PER DAY. Pack Validity 84 Days");
         if(index==8)
-            jTextArea1.setText("₹399  POST_PAID Validity 28Days\n 10GB DATA/PER DAY \n 3G/4G Data. 10GB Data/PER DAY. Pack Validity 28 Days");
+            jTextArea1.setText("₹399  POST_PAID Validity 28Days\n 10GB DATA \n 3G/4G Data. 10GB Data. Pack Validity 28 Days");
         if(index==9)
-            jTextArea1.setText("₹499  POST_PAID Validity 28Days\n 20GB DATA/PER DAY \n 3G/4G Data. 20GB Data/PER DAY. Pack Validity 28 Days");
+            jTextArea1.setText("₹499  POST_PAID Validity 28Days\n 20GB DATA \n 3G/4G Data. 20GB Data. Pack Validity 28 Days"); 
         if(index==10)
-            jTextArea1.setText("₹649  POST_PAID Validity 28Days\n 30GB DATA/PER DAY \n 3G/4G Data. 30GB Data/PER DAY. Pack Validity 28 Days");
-        
-        if(index==8)
-            jTextArea1.setText("₹799  POST_PAID Validity 28Days\n 40GB DATA/PER DAY \n 3G/4G Data. 40GB Data/PER DAY. Pack Validity 28 Days");
-        
-        if(index==8)
-            jTextArea1.setText("₹999  POST_PAID Validity 28Days\n 50GB DATA/PER DAY \n 3G/4G Data. 50GB Data/PER DAY. Pack Validity 28 Days");
+            jTextArea1.setText("₹649  POST_PAID Validity 28Days\n 30GB DATA \n 3G/4G Data. 30GB Data. Pack Validity 28 Days");
+        if(index==11)
+            jTextArea1.setText("₹799  POST_PAID Validity 28Days\n 40GB DATA \n 3G/4G Data. 40GB Data. Pack Validity 28 Days");
+        if(index==12)
+            jTextArea1.setText("₹999  POST_PAID Validity 28Days\n 50GB DATA \n 3G/4G Data. 50GB Data. Pack Validity 28 Days");
     }                                        
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -235,50 +251,58 @@ public class recharge extends javax.swing.JFrame {
         String plan= jList2.getSelectedValue();
         int n=0,m=0;
         try{
-            String sql1="select * from recharge where mob_num='"+mob_num"'";
-            rs=stmt.executeQuery(sql1);
-            while(rs.next()){
-               m++;}
-            if(m==1){
-                String sql2="UPDATe recharge SET balance='"+plan+"' where mob_num='"+mob_num+"'";
-                n=stmt.executeUpdate(sql2);
-                if(n==1){
-                    JOptionPane.showMessageDialog(this,"Mobile number "+mob_num+"recharge successful with plan" +plan);}}
-            else{
-                n=0;
-                String sql="insert into recharge values('"+mob_num+"','"+plan+"','"+type+"')";
-                n=stmt.executeUpdate(sql);
-                if(n==1){
-                    JOptionPane.showMessageDialog(this,"Mobile number "+mob_num+"recharge successfull with plan"+plan);
+                String sql1="select * from recharge where mob_num='"+mob_num+"'";
+                rs=stmt.executeQuery(sql1);
+                while(rs.next()){
+                    m++;
                 }
-        }
-            
-        catch(Exception ex){
-            JoptionPane.showMessageDialog(this,ex);
-        }
-            jTextField1.setText(null);
-            jTextArea1.setText(null);
+             if(m==1){
+                 String sql2="UPDATE recharge SET balance='"+plan+"' where mob_num='"+mob_num+"'";
+                 n=stmt.executeUpdate(sql2);
+                 if(n==1){
+                     JOptionPane.showMessageDialog(this,"Mobile number "+mob_num+" recharge successful with plan "+plan);
+                 }
+             }      
+                
+             else{
+                 n=0;
+            String sql="insert into recharge values('"+mob_num+"','"+plan+"','"+type+"')";
+            n=stmt.executeUpdate(sql);
+            if(n==1)
+            {
+                JOptionPane.showMessageDialog(this,"Mobile number "+mob_num+" recharge successful with plan "+plan);
+            }
+        }}
+            catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex);
+                    }
+        jTextField1.setText(null);
+        jTextArea1.setText(null);
     }                                        
 
-        private void jButton4ActionPerformed(java.awt.event.ActionEvent evt){
-            //check availability button
-            long mob_num=Long.valueOf(jTextField1.getText());
-            String type=String.valueOf(jComboBox1.getSelecedItem());
-            try{
-                String sql2="select * from customer_detail where mobile_num='"mob_num+"' and type_of_sim='"+type+"'";
-                rs=stmt.executeQuery(sql2);
-                int n=0;
-                while(rs.next()){
-                    n++;}
-                if(n==1){
-                    JOptionPane.showMessageDialog(this,"Customer Exists");
-                }
-                else
-                    JOptionPane.showMessageDialog(this,"Mobile number or SIM Type is incorrect");
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // check availability button
+        long mob_num=Long.valueOf(jTextField1.getText());
+        String type=String.valueOf(jComboBox1.getSelectedItem());
+        
+        try{
+            String sql2="select * from customer_detail where mobile_num='"+mob_num+"' and type_of_sim='"+type+"' ";
+            rs=stmt.executeQuery(sql2);
+            int n=0;
+            while(rs.next()){
+                n++;
             }
-            catch(Exception ex){
-                JOptionPane.showMessageDialog(this,ex);
+            if(n==1){
+                JOptionPane.showMessageDialog(this,"Customer exists");
         }
+            else
+                JOptionPane.showMessageDialog(this,"Mobile number or SIM Type is incorrect");
+        }
+            catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex);
+        }
+    }                                        
+
     /**
      * @param args the command line arguments
      */
@@ -318,6 +342,7 @@ public class recharge extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -332,3 +357,4 @@ public class recharge extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration                   
 }
+
