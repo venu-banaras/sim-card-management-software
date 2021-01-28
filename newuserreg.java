@@ -151,6 +151,7 @@ public class newuserreg extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>                        
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {                                                
@@ -254,3 +255,4 @@ public class newuserreg extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField2;
     // End of variables declaration                   
 }
+
