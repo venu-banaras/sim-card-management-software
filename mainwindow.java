@@ -118,10 +118,13 @@ public class mainwindow extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        // lost sim button
+        lostsim.main(new String[0]);
+        dispose();
     }                                        
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -144,7 +147,7 @@ public class mainwindow extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // RECHARGE BUTTON
         recharge.main(new String[0]);
-        
+        dispose();
     }                                        
 
     /**
@@ -192,3 +195,4 @@ public class mainwindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     // End of variables declaration                   
 }
+
