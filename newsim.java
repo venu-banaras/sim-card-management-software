@@ -1,8 +1,4 @@
 
-/**
- *
- * @author MayankSingh
- */
 import java.sql.*;
 import javax.swing.*;
 import java.util.*;
@@ -86,7 +82,7 @@ public class newsim extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("THUMB IMPRESSION");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRE-PAID\t", "POST-PAID" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRE-PAID", "POST-PAID" }));
 
         jButton1.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         jButton1.setText("SUBMIT!");
@@ -206,6 +202,7 @@ public class newsim extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>                        
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -219,7 +216,7 @@ public class newsim extends javax.swing.JFrame {
         thumb=String.valueOf(n);//same as sim card number
         mob_num=mobile_generate(99); // recieves a random mobile number generated from the function
                 try{
-            String sql="insert into customer_detail values('"+aadhar+"','"+sim_num+"','"+type+"','"+mob_num+"','"+thumb+"','"+cust_name+"')";//
+                   String sql="insert into customer_detail values('"+aadhar+"','"+sim_num+"','"+type+"','"+mob_num+"','"+thumb+"','"+cust_name+"')";//
             int n=stmt.executeUpdate(sql);
             if(n==1){
                 JOptionPane.showMessageDialog(this, "New Customer added successfully!!");
@@ -238,7 +235,7 @@ public class newsim extends javax.swing.JFrame {
      private static long mobile_generate(int prefix) // mobile number generator
      {
          Random rand= new Random();
-         long x= (long)(rand.nextDouble()*1000000000L); //generate a 10 digit number
+         long x= (long)(rand.nextDouble()*100000000L); //generate a 10 digit number
          String s= String.valueOf(prefix) + String.format("%08d", x);
          return Long.valueOf(s);
      }
@@ -335,3 +332,4 @@ public class newsim extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     // End of variables declaration                   
 }
+
