@@ -1,7 +1,3 @@
-/**
- *
- * @author Group BCA
- */
 
 public class Startup extends javax.swing.JDialog {
 
@@ -93,6 +89,7 @@ public class Startup extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>                        
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -162,3 +159,4 @@ public class Startup extends javax.swing.JDialog {
 
     
 }
+
