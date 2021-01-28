@@ -197,41 +197,88 @@ public class recharge extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                          
 
-    private void jList2KeyPressed(java.awt.event.KeyEvent evt) {                                  
-        // list
-        
-    }                                 
+                                 
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // view plan button
         int index=jList2.getSelectedIndex();
-        if(index==0)
-            jTextArea1.setText("₹49  Validity 28 Days\n 3GB DATA \n3G/4G Data. 3GB Data. Pack Validity 28 Days ");
         if(index==1)
-            jTextArea1.setText("₹149  Validity 28 Days\n 1GB DATA/PER DAY \n3G/4G Data. 1GB Data/PER DAY. Pack Validity 28 Days  ");
+            jTextArea1.setText("₹49  Validity 28 Days\n 3GB DATA \n3G/4G Data. 3GB Data. Pack Validity 28 Days ");
         if(index==2)
-            jTextArea1.setText("₹249  Validity 28 Days\n 1.5GB DATA/PER DAY \n 3G/4G Data. 1.5GB Data/PER DAY. Pack Validity 28 Days  ");
+            jTextArea1.setText("₹149  Validity 28 Days\n 1GB DATA/PER DAY \n3G/4G Data. 1GB Data/PER DAY. Pack Validity 28 Days  ");
         if(index==3)
-            jTextArea1.setText("₹399  Validity 56 Days\n 1.5GB DATA/PER DAY \n 3G/4G Data. 3GB Data. Pack Validity 56 Days");
+            jTextArea1.setText("₹249  Validity 28 Days\n 1.5GB DATA/PER DAY \n 3G/4G Data. 1.5GB Data/PER DAY. Pack Validity 28 Days  ");
         if(index==4)
-            jTextArea1.setText("₹599  Validity 84 Days\n 1.5GB DATA/PER DAY \n 3G/4G Data. 1.5GB Data/PER DAY. Pack Validity 56 Days");
+            jTextArea1.setText("₹399  Validity 56 Days\n 1.5GB DATA/PER DAY \n 3G/4G Data. 3GB Data. Pack Validity 56 Days");
         if(index==5)
+            jTextArea1.setText("₹599  Validity 84 Days\n 1.5GB DATA/PER DAY \n 3G/4G Data. 1.5GB Data/PER DAY. Pack Validity 56 Days");
+        if(index==6)
             jTextArea1.setText("₹999  Validity 84Days\n 2GB DATA/PER DAY \n 3G/4G Data. 2GB Data/PER DAY. Pack Validity 84 Days");
+        if(index==8)
+            jTextArea1.setText("₹399  POST_PAID Validity 28Days\n 10GB DATA/PER DAY \n 3G/4G Data. 10GB Data/PER DAY. Pack Validity 28 Days");
+        if(index==9)
+            jTextArea1.setText("₹499  POST_PAID Validity 28Days\n 20GB DATA/PER DAY \n 3G/4G Data. 20GB Data/PER DAY. Pack Validity 28 Days");
+        if(index==10)
+            jTextArea1.setText("₹649  POST_PAID Validity 28Days\n 30GB DATA/PER DAY \n 3G/4G Data. 30GB Data/PER DAY. Pack Validity 28 Days");
+        
+        if(index==8)
+            jTextArea1.setText("₹799  POST_PAID Validity 28Days\n 40GB DATA/PER DAY \n 3G/4G Data. 40GB Data/PER DAY. Pack Validity 28 Days");
+        
+        if(index==8)
+            jTextArea1.setText("₹999  POST_PAID Validity 28Days\n 50GB DATA/PER DAY \n 3G/4G Data. 50GB Data/PER DAY. Pack Validity 28 Days");
     }                                        
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // recharge button
-        long mob_num=jTextField1.getText();
+        long mob_num=Long.valueOf(jTextField1.getText());
         String type=String.valueOf(jComboBox1.getSelectedItem());
         String plan= jList2.getSelectedValue();
+        int n=0,m=0;
         try{
-            
+            String sql1="select * from recharge where mob_num='"+mob_num"'";
+            rs=stmt.executeQuery(sql1);
+            while(rs.next()){
+               m++;}
+            if(m==1){
+                String sql2="UPDATe recharge SET balance='"+plan+"' where mob_num='"+mob_num+"'";
+                n=stmt.executeUpdate(sql2);
+                if(n==1){
+                    JOptionPane.showMessageDialog(this,"Mobile number "+mob_num+"recharge successful with plan" +plan);}}
+            else{
+                n=0;
+                String sql="insert into recharge values('"+mob_num+"','"+plan+"','"+type+"')";
+                n=stmt.executeUpdate(sql);
+                if(n==1){
+                    JOptionPane.showMessageDialog(this,"Mobile number "+mob_num+"recharge successfull with plan"+plan);
+                }
         }
+            
         catch(Exception ex){
-            
+            JoptionPane.showMessageDialog(this,ex);
         }
+            jTextField1.setText(null);
+            jTextArea1.setText(null);
     }                                        
 
+        private void jButton4ActionPerformed(java.awt.event.ActionEvent evt){
+            //check availability button
+            long mob_num=Long.valueOf(jTextField1.getText());
+            String type=String.valueOf(jComboBox1.getSelecedItem());
+            try{
+                String sql2="select * from customer_detail where mobile_num='"mob_num+"' and type_of_sim='"+type+"'";
+                rs=stmt.executeQuery(sql2);
+                int n=0;
+                while(rs.next()){
+                    n++;}
+                if(n==1){
+                    JOptionPane.showMessageDialog(this,"Customer Exists");
+                }
+                else
+                    JOptionPane.showMessageDialog(this,"Mobile number or SIM Type is incorrect");
+            }
+            catch(Exception ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
     /**
      * @param args the command line arguments
      */
